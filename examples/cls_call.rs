@@ -5,7 +5,7 @@ use std::collections::HashMap;
 
 #[derive(Serialize, Deserialize, Debug)]
 struct Args {
-    prompt: String,
+    name: String,
 }
 
 #[tokio::main]
@@ -14,8 +14,8 @@ async fn main() -> Result<()> {
     let mut client = ModalClient::from_env().await?;
 
     let app_name =
-        std::env::var("MODAL_APP").unwrap_or_else(|_| "image-api-qwen-fewsteps".to_string());
-    let class_name = std::env::var("MODAL_CLASS").unwrap_or_else(|_| "qwenfewsteps".to_string());
+        std::env::var("MODAL_APP").unwrap_or_else(|_| "MyApp".to_string());
+    let class_name = std::env::var("MODAL_CLASS").unwrap_or_else(|_| "MyClass".to_string());
 
     println!("Looking up class {}::{}", app_name, class_name);
     let mut cls = client.cls_from_name(&app_name, &class_name).await?;
@@ -31,9 +31,9 @@ async fn main() -> Result<()> {
 
     // Call a method named 'echo' on the instance with an argument that will be CBOR-serialized.
     let args = Args {
-        prompt: "cinematic portrait of a girl".to_string(),
+        name: "Hello".to_string(),
     };
-    let resp: Args = inst.call_method("generate_image", &args).await?;
+    let resp: Args = inst.call_method("echo", &args).await?;
 
     println!("method response: {:?}", resp);
     Ok(())
