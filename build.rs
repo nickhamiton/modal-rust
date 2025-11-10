@@ -8,6 +8,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Compile the Modal proto into Rust types using tonic/prost.
     tonic_build::configure()
         .build_server(false)
-        .compile(&["../modal_proto/api.proto"], &["../modal_proto"])?;
+        .compile(&["./modal_proto/api.proto"], &["./modal_proto"])?;
     Ok(())
 }
