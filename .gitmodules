@@ -1,0 +1,3 @@
+[submodule "libmodal"]
+	path = libmodal
+	url = https://github.com/modal-labs/libmodal
