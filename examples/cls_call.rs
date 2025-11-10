@@ -1,5 +1,5 @@
 use anyhow::Result;
-use modal_rust::{Cls, ModalClient};
+use modal::{Cls, ModalClient};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 

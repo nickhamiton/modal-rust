@@ -1,5 +1,5 @@
 use anyhow::Result;
-use modal_rust::ModalClient;
+use modal::ModalClient;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]

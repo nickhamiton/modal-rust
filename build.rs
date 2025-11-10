@@ -6,8 +6,20 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     std::env::set_var("PROTOC", protoc);
 
     // Compile the Modal proto into Rust types using tonic/prost.
+    // Resolve paths relative to the crate manifest dir so the build works
+    // whether the crate is used from a git dependency or a local path.
+    let manifest_dir = std::env::var("CARGO_MANIFEST_DIR")?;
+    let proto_dir = std::path::Path::new(&manifest_dir).join("modal_proto");
+    let api_proto = proto_dir.join("api.proto");
+
+    // Tell cargo when to rerun the build script.
+    println!("cargo:rerun-if-changed={}", api_proto.display());
+    println!("cargo:rerun-if-changed={}", proto_dir.display());
+
     tonic_build::configure()
         .build_server(false)
-        .compile(&["./modal_proto/api.proto"], &["./modal_proto"])?;
+        .compile(&[api_proto.to_str().expect("invalid proto path")], &[
+            proto_dir.to_str().expect("invalid proto dir"),
+        ])?;
     Ok(())
 }

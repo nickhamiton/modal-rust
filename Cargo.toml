@@ -6,13 +6,13 @@ description = "Rust client for calling Modal deployed functions"
 authors = ["nick"]
 license = "MIT"
 documentation = ""
-repository = "https://github.com/nickhamiton/modal_rust"
+repository = "https://github.com/nickhamiton/modal-rust"
 keywords = ["modal", "serverless", "cloud"]
 categories = ["api-bindings", "web-programming"]
 
 # Library config
 [lib]
-name = "modal-rust"
+name = "modal"
 path = "src/lib.rs"
 
 # Also build examples
