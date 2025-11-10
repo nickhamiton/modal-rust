@@ -680,7 +680,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "modal_rust"
+name = "modal-rust"
 version = "0.1.0"
 dependencies = [
  "anyhow",
