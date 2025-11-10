@@ -1,0 +1,42 @@
+[package]
+name = "modal_rust"
+version = "0.1.0"
+edition = "2021"
+description = "Rust client for calling Modal deployed functions"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+documentation = "https://docs.rs/modal_rust"
+repository = "https://github.com/yourusername/modal_rust"
+keywords = ["modal", "serverless", "cloud"]
+categories = ["api-bindings", "web-programming"]
+
+# Library config
+[lib]
+name = "modal_rust"
+path = "src/lib.rs"
+
+# Also build examples
+[[example]]
+name = "echo"
+path = "examples/echo.rs"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+tonic = { version = "0.9", features = ["transport"] }
+prost = "0.11"
+prost-types = "0.11"
+serde = { version = "1.0", features = ["derive"] }
+serde_cbor = "0.11"
+reqwest = { version = "0.11", features = ["json", "multipart", "rustls-tls"] }
+bytes = "1.4"
+anyhow = "1.0"
+thiserror = "1.0"
+toml = "0.7"
+
+[build-dependencies]
+tonic-build = "0.9"
+prost-build = "0.11"
+protoc-bin-vendored = "3.2.0"
+
+[package.metadata]
+proto-dir = "../modal_proto"
