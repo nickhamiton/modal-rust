@@ -39,4 +39,4 @@ prost-build = "0.11"
 protoc-bin-vendored = "3.2.0"
 
 [package.metadata]
-proto-dir = "modal_proto"
+proto-dir = "./modal_proto"
